@@ -1,29 +1,31 @@
-def esEntero(cadena):
-    return cadena.isdigit() and 1 <= int(cadena) <= 100
-
-
 puntajes = []
-for dia in range(1, 16):
-    puntajeValido = False
-    while not puntajeValido:
-        puntaje = input("Ingrese el puntaje del dia " + str(dia) + " (entre 1 y 100): ")
-        if esEntero(puntaje):
-            puntajes.append(int(puntaje))
-            puntajeValido = True
-        else:
-            print("El puntaje debe ser un número entero entre 1 y 100.")
+dia = 1
+while dia <= 15:
+    puntaje = input("Ingrese el puntaje del día " + str(dia) + " (entre 1 y 100): ")
+    esEntero = puntaje.isdigit() and 1 <= int(puntaje) <= 100
+    if esEntero:
+        puntajes.append(int(puntaje))
+        dia += 1
+    else:
+        print("El puntaje debe ser un número entero entre 1 y 100.")
 
 diasBajos = []
-for dia, puntaje in enumerate(puntajes, start=1):
+dia = 1
+while dia <= len(puntajes):
+    puntaje = puntajes[dia - 1]
     if puntaje < 60:
         diasBajos.append(dia)
+    dia += 1
 
 if diasBajos:
     resultado = "Los días con puntaje menor a 60 puntos son: "
-    for i, dia in enumerate(diasBajos):
-        if i > 0:
+    primer_dia = True
+    for dia in diasBajos:
+        if not primer_dia:
             resultado += ", "
         resultado += "día " + str(dia)
+        primer_dia = False
     print(resultado)
 else:
     print("No hay días con puntaje menor a 60 puntos.")
+("No hay días con puntaje menor a 60 puntos.")

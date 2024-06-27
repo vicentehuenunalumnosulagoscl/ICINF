@@ -1,15 +1,22 @@
-PreciosDolares = []
-print("Ingrese 10 precios de productos en dolares: ")
+preciosDolares = []
+print("Ingrese 10 precios de productos en dólares: ")
 for i in range(10):
     while True:
         entrada = input("Precio " + str(i + 1) + ": ")
-        if entrada.replace('.', '', 1).lstrip('-').isdigit():
+        esValido = True
+        for indice, caracter in enumerate(entrada):
+            if not (caracter.isdigit() or caracter == '.' or (caracter == '-' and indice == 0)):
+                esValido = False
+                break
+
+        if esValido:
             precio = float(entrada)
-            PreciosDolares.append(precio)
+            preciosDolares.append(precio)
             break
         else:
-            print("Ingrese un número valido. ")
-PreciosPesos = [precio * 950 for precio in PreciosDolares]
+            print("Ingrese un número válido. ")
+
+preciosPesos = [precio * 950 for precio in preciosDolares]
 print("Lista de precios en pesos chilenos:")
-for i, precio in enumerate(PreciosPesos, start=1):
+for i, precio in enumerate(preciosPesos, start=1):
     print("Precio " + str(i) + ": $" + str(round(precio, 2)) + " CLP")

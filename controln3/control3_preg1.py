@@ -1,9 +1,12 @@
-def soloNumeros(var):
-    return var.isdigit()
+def solo_numeros(var):
+    if not var:
+      return False
 
-entrada = input("Ingrese un valor: ")
+    for char in var:
+        if char < '0' or char > '9':
+            return False 
+    return True 
 
-if soloNumeros(entrada):
-    print("True")
-else:
-    print("False")
+print(solo_numeros("12345"))
+print(solo_numeros("123c5"))
+print(solo_numeros(""))
